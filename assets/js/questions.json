@@ -1,0 +1,115 @@
+{
+  "easy":
+  [
+    {
+      "question": "What vehicles did the Empire use in its assault on the rebels' Hoth base?",
+      "choices":
+      [
+        "Snowspeeders",
+        "TIE Fighters",
+        "AT-ATs",
+        "TIE Bombers"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "Who infiltrated Jabba's palace dressed as a bounty hunter named Boushh?",
+      "choices":
+      [
+        "Luke Skywalker",
+        "Lando Calrissian",
+        "Chewbacca",
+        "Princess Leia"
+      ],
+      "answer": 4
+    },
+    {
+      "question": "Who first discovered stormtroopers on Cloud City but couldn't tell his friends?",
+      "choices":
+      [
+        "R2-D2",
+        "Chewbacca",
+        "Han Solo",
+        "C-3PO"
+      ],
+      "answer": 4
+    },
+    {
+      "question": "How many forms of communication does C-3PO speak?",
+      "choices":
+      [
+        "Over 6 million",
+        "Over 6,000",
+        "Over 3 million",
+        "Over 3,000"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "What part of the pit droid did Jar Jar have to hit to get it to stop acting up?",
+      "choices":
+      [
+        "Head",
+        "Belly",
+        "Nose",
+        "Back"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "What kind of droid is R2-D2?",
+      "choices":
+      [
+        "Roomba",
+        "Astromech",
+        "Unknown",
+        "Protocol"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "How many lightsabers does General Grievous use?",
+      "choices":
+      [
+        "One",
+        "Six",
+        "Four",
+        "Two"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "What command was given to turn the clones to the dark side?",
+      "choices":
+      [
+        "Order 26",
+        "Order 56",
+        "Order 6",
+        "Order 66"
+      ],
+      "answer": 4
+    },
+    {
+      "question": "Where was Anakin Skywalker born?",
+      "choices":
+      [
+        "Tatooine",
+        "Coruscant",
+        "Endor",
+        "Naboo"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "How many Jedi are on the Jedi Council?",
+      "choices":
+      [
+        "Ten",
+        "Twelve",
+        "Sixteen",
+        "Eight"
+      ],
+      "answer": 2
+    }
+  ]
+}

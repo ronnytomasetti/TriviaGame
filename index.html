@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Ronny Tomasetti">
+  <meta name="description" content="Trivia Game">
+  <meta name="keywords" content="trivia">
+
+  <title>Trivia Game</title>
+  
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.ico">
+</head>
+
+<body>
+  <div class="container-full-bg">
+
+    <div class="wrapper">
+
+      <h1 class="game-title text-center">Trivia Game</h1>
+
+      <div id="game-board">
+        <div id="trivia-card"></div> <!-- END trivia-card -->
+      </div> <!-- END game-board -->
+
+      <!-- Button -->
+      <button class="start-button">Click Me</button>
+
+    </div> <!-- END wrapper -->
+  </div> <!-- END container-full-bg -->
+
+  <!-- trivia card template -->
+  <script id="question-template" type="text/custom-template">
+    <div>
+      <h1 class="first"></h1>
+      <h2 class="bar"></h2>
+    </div>
+  </script>
+
+  <!-- jQuery Library -->
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" 
+  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  
+  <!-- game logic -->
+  <script src="assets/js/game.js"></script>
+
+</body>
+</html>
