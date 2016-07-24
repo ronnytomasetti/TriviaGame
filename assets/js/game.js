@@ -15,12 +15,12 @@
 * New game button doesn't reload page.
 * */
 
-var questionTemplate = $('#question-template').html();
+var template = $('#question-template').html();
 
 $('button.start-button').click( function()
 {
 		// Clone the template
-    var item = $(questionTemplate).clone();
+    var item = $(template).clone();
     
     //Find the 
     $(item).find('.first').html("hhahahahaha");
@@ -32,48 +32,30 @@ $('button.start-button').click( function()
     $('#trivia-card').append(item);
 });
 
-var characters = [];
-var player;
-var cpu;
+var trivia =
+{
+	questionsBank: [],
+	correctAnswers: 0,
+	incorrectAnswers: 0,
+	unanswered: 0
+}
 
-$( document ).ready( function() {
-
-	/**
-	 *	End the Game
-	 *	Moves the game to the game over state
-	 *	if the player has defeated all of the enemies
+$( document ).ready( function()
+{
+	/*
+	 *	Retrieve questions json object
+	 *	Save data retrieved in trivia.questionsBank[] array.
 	 *
-	 *	@param (bool) Did the player win?
+	 *	@param ()
 	 *	@return void 
 	 */
-	function retrieveCharacters() {
-		
-		$.getJSON( 'assets/js/characters.json', function( data )
+	function retrieveQuestions()
+	{
+		$.getJSON( 'assets/js/questions.json', function( data )
 		{	
-			characters = $( data.characters );
-		  
-		  $.each( data.characters, function( index, value )
-		  {
-		  	var $characterName = $( '<p>' ).addClass( 'name text-center' )
-		  																 .html( data.characters[ index ].name );
-
-		  	var $characterImg = $( '<img>' ).addClass( 'img-character' )
-		  																	.attr( 'src', 'assets/img/' + data.characters[index].img );
-
-		  	var $characterHP = $( '<p>' ).addClass( 'hp text-center' )
-		  															 .html( data.characters[index].hp );
-
-		  	var $newCharacter = $( '<div>' ).addClass( 'character' )
-		  																	.attr( 'data-id', index )
-						  													.append( $characterName )
-						  													.append( $characterImg )
-						  													.append( $characterHP )
-						  													.one( 'click', newPlayerSelection );
-
-		  	$( '#characters-select' ).append( $newCharacter );
-		  }); // END .each()
-		}); // END $.getJSON()
-	} // END retrieveCharacters()
+			trivia.questionsBank = $( data.questions );
+		});
+	}
 
 	function newPlayerSelection( event )
 	{
@@ -180,4 +162,5 @@ $( document ).ready( function() {
 		$( '.button' ).one( 'click', function() { location.reload() });
 	} // END endGameWith()
 
+	retrieveQuestions();
 }); // END $(document).ready()
