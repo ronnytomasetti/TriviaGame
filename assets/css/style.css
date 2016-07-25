@@ -39,21 +39,57 @@ body { font-family: 'Montserrat', sans-serif; }
 
 #game-board
 {
+  position: relative;
   background-color: white;
   width: 100%;
-  height: 575px;
   margin: 20px auto;
+  box-sizing: border-box;
 }
 
 #trivia-cards
 {
   background-color: grey;
   width: 95%;
-  height: 450px;
+  height: 350px;
   margin: 20px auto;
+  padding-top: 75px;
+  box-sizing: border-box;
 }
 
 #timer
+{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  height: 150px;
+}
+
+#question
+{
+  font-size: 30px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+#correct-answer
+{
+
+}
+
+.choices
+{
+  width: 50%;
+  font-size: 22px;
+  margin: 20px auto;
+}
+
+.choices:hover
+{
+  background-color: white;
+}
+
+.results
 {
 
 }
@@ -61,23 +97,17 @@ body { font-family: 'Montserrat', sans-serif; }
 .start-button
 {
   display: block;
-  width: 95%;
-  margin: 20px auto;
-  background-color: #f44336;
+  width: 100%;
+  /*margin: 20px auto;*/
+  background-color: #009933;
   color: #fff;
-  border: 2px solid #f44336;
+  border: 2px solid #00802b;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-}
-
-.disabled
-{
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .hide

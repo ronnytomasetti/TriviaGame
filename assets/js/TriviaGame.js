@@ -11,7 +11,7 @@ function TriviaGame()
   this.correctAnswers = 0;
   this.incorrectAnswers = 0;
   this.unanswered = 0;
-  this.timeAllowed = 30;
+  this.timeAllowed = 10;
   this.timeRemaining = 0;
 
   this.getCorrectAnswers = function()
@@ -64,7 +64,7 @@ function TriviaGame()
   }
 
   /**
-  *  Reset trivia game counter variables
+  *  Reset trivia game counter variables for new round
   *
   *  @param ()
   *  @return undefined
@@ -76,6 +76,7 @@ function TriviaGame()
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
     this.unanswered = 0;
+    this.resetTimeRemaining();
   }
   
 }

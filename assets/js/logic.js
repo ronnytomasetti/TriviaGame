@@ -17,9 +17,9 @@ $( document ).ready( function()
 {
 
   /**
-   *  Start new game
+   *  Starts a new game
    *
-   *  Initializes global game objects declared above.
+   *  Initializes global game objects.
    *  Calls function to retrieve json containing questions.
    *  Binds one click event listener to start button.
    *
@@ -28,10 +28,13 @@ $( document ).ready( function()
    */
    function startGame()
    {
+
     /* Initialize global game variables */
     game = new TriviaGame();
+
     qTemplate = $( '#question-template' ).html();
     aTemplate = $( '#answers-template' ).html();
+    rTemplate = $( '#results-template' ).html();
 
     /* Start retrieving questions json */
     game.retrieveQuestions();
@@ -43,12 +46,11 @@ $( document ).ready( function()
    /* END startGame() ---------------------------- */
 
   /**
-   *  Start new round
+   *  Starts a new round
    *
    *  Hides start button.
-   *  Reset game object variables.
-   *  Reset time remaining.
-   *  Calls displayNextQuestion() function.
+   *  Call for new round.
+   *  Ends with call to displayNextQuestion() function.
    *
    *  @param ()
    *  @return undefined
@@ -58,11 +60,10 @@ $( document ).ready( function()
    {
 
     /* Hide start button */
-    $( this ).addClass( 'hide' );
+    $( 'button.start-button' ).addClass( 'hide' );
 
-    /* Initiate new round and reset time remaining */
+    /* Initiate new round */
     game.newRound();
-    game.resetTimeRemaining();
 
     displayQuestion();
 
@@ -70,7 +71,7 @@ $( document ).ready( function()
    /* END startRound() ---------------------------- */
 
   /**
-   *  Display the next question
+   *  Displays the next question
    *
    *  Clone template in order to create question.
    *  Adds current question and choices to new question template.
@@ -83,6 +84,7 @@ $( document ).ready( function()
    */
    function displayQuestion()
    {
+
     /* Store copy of question template */
     var questionTemplate = $( qTemplate ).clone();
 
@@ -105,11 +107,14 @@ $( document ).ready( function()
     });
     /* END .each() loop */
 
+    $( '#trivia-cards' ).children().remove();
+
     /* Add question to div with id trivia-cards */
     $( '#trivia-cards' ).append( questionTemplate );
 
     /* Time starts now!! */
     startTimer();
+
    }
    /* END displayQuestion() ---------------------------- */
 
@@ -127,27 +132,31 @@ $( document ).ready( function()
    function checkAnswer()
    {
 
-    clearInterval( timer );
+    clearTimer();
 
+    /* NOTE: THIS IS PROBABLY USELESS SINCE LATER ON IN THE CODE 
+              I'M REMOVING ALL CHILDREN FROM TRIVIA CARD DIV!!! */
     $( '#trivia-cards' ).children()
                         .unbind( 'click', checkAnswer );
 
     var userChoice = $( this ).attr( 'id' );
     var correctAnswer = game.questionsBank[ game.currentQuestion ].answer;
 
-    if ( userChoice === null ) /* Player did not answer question in time */
-    {
-      game.unanswered++;
-      displayAnswer( false );
-    }
-    else if ( userChoice == correctAnswer ) /* Player answered correctly */
+    console.log("THIS IN CHECKANSWER(): " + $( this ).attr( 'id' ) );
+
+    if ( userChoice == correctAnswer ) /* Player answered correctly */
     {
       game.correctAnswers++;
       displayAnswer( true );
     }
-    else /* Player answered incorrectly */
+    else if ( userChoice != correctAnswer && userChoice <= 3 ) /* Player answered in time but was incorrect */
     {
       game.incorrectAnswers++;
+      displayAnswer( false );
+    }
+    else /* Player did not answer question in time */
+    {
+      game.unanswered++;
       displayAnswer( false );
     }
 
@@ -166,37 +175,27 @@ $( document ).ready( function()
    */
    function displayAnswer( isCorrect )
    {
-    /* Store copy of question template */
+    /* Store copy of answer template */
     var answerTemplate = $( aTemplate ).clone();
 
-    /* Grab question string and choices array from trivia game object */
-    var question = game.questionsBank[ game.currentQuestion ].question;
-    var choices = game.questionsBank[ game.currentQuestion ].choices;
+    var answer = game.questionsBank[ game.currentQuestion ].answer;
+    var answerString = game.questionsBank[ game.currentQuestion ].choices[ answer ];
 
-    /* Set up html for current question */
-    $( questionTemplate ).find( '#question' )
-                         .html( question );
+    $( answerTemplate ).find( '#result' )
+                       .text( ( isCorrect ? "CORRECT!" : "WRONG!" ) );
 
-    /* Loop through choices array in order to set up html and click listeners */
-    $.each( choices, function( index, value )
-    {
+    $( answerTemplate ).find( '#correct-answer' )
+                       .text( answerString );
 
-      $( questionTemplate ).find( '#' + index )
-                           .html( value )
-                           .click( checkAnswer );
-
-    });
-    /* END .each() loop */
-
-    /* Add question to div with id trivia-cards */
-    $( '#trivia-cards' ).append( questionTemplate );
+    $( '#trivia-cards' ).children().remove();
+    $( '#trivia-cards' ).append( answerTemplate );
 
     game.currentQuestion++;
 
-    if ( game.currentQuestion == (game.questionsBank.length - 1) )
-      setTimeout( endRound, 7000 );
+    if ( game.currentQuestion == game.questionsBank.length )
+      setTimeout( endRound, 3000 );
     else
-      setTimeout( displayQuestion, 7000 );
+      setTimeout( displayQuestion, 3000 );
    }
    /* END displayAnswer() ---------------------------- */
 
@@ -213,17 +212,28 @@ $( document ).ready( function()
    function endRound()
    {
 
-    game.currentQuestion++;
+    var resultsTemplate = $( rTemplate ).clone();
 
-    if ( game.currentQuestion == (game.questionsBank.length - 1) )
-      setTimeout( endRound, 7000 );
-    else
-      setTimeout( displayQuestion, 7000 );
+    $( resultsTemplate ).find( '#correct' )
+                        .text( game.correctAnswers );
+    $( resultsTemplate ).find( '#incorrect' )
+                        .text( game.incorrectAnswers );
+    $( resultsTemplate ).find( '#unanswered' )
+                        .text( game.unanswered );
+
+    $( '#trivia-cards' ).children().remove();
+
+    $( '#trivia-cards' ).append( resultsTemplate );
+
+    $( 'button.start-button' ).text( 'Restart Trivia' )
+                              .removeClass( 'hide' )
+                              .one( 'click', startRound );
+
    }
    /* END endRound() ---------------------------- */
 
   /**
-   *  Sets new timer interval
+   *  Sets new timer object
    *
    *  @param ()
    *  @return undefined
@@ -231,30 +241,55 @@ $( document ).ready( function()
    */
    function startTimer()
    {
+    $( '.circle-timer' ).TimeCircles({ time: { Days: { show: false },
+                                               Hours: { show: false },
+                                               Minutes: { show: false },
+                                               Seconds: { color: "#ff8080" }
+                                             }
+                                           });
+
+    // $( '.circle-timer' ).TimeCircles( { count_past_zero: false } );
+    $( '.circle-timer' ).TimeCircles( { direction: "Both" } );
+    // $( '.circle-timer' ).TimeCircles( { use_background: false } );
+
+    $( '.circle-timer' ).attr( 'data-timer', game.timeAllowed.toString() );
+    $( '.circle-timer' ).TimeCircles().start();
+
     /* Set new timing interval */
-    timer = setInterval( updateTimer, 1000 );
+    timer = setInterval( updateTimeRemaining, 1000 );
+
    }
    /* END startTimer() ---------------------------- */
 
   /**
-   *  Updates corresponding timer html and corresponding time remaining variable.
+   *  Updates time remaining variable.
    *  Checks if time allowed equals zero, if true fires checkAnswer().
    *
    *  @param ()
    *  @return undefined
    *
    */
-   function updateTimer()
+   function updateTimeRemaining()
    {
-
-    $( '#timer' ).html( '<h2>' + game.timeRemaining.toString() + '</h2>' );
 
     game.timeRemaining--;
 
     if ( game.timeRemaining == 0 )
       checkAnswer();
+
    }
    /* END updateTimer() ---------------------------- */
+
+   function clearTimer()
+   {
+
+    $( '.circle-timer' ).TimeCircles().destroy();
+
+    clearInterval( timer );
+
+    game.resetTimeRemaining();
+
+   }
 
   /** --------------------------
    *  APPLICATION ENTRY POINT *
