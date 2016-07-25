@@ -20,30 +20,51 @@
 
       <h1 class="game-title text-center">Trivia Game</h1>
       
-      <div id="game-board">
-        <div id="trivia-card"></div> <!-- END trivia-card -->
+      <div id="game-board" class="clearfix">
+
+        <!-- trivia question with multiple choices -->
+        <div id="trivia-cards">
+          <!-- cloned question template goes here -->
+        </div> <!-- END trivia-card -->
+
+        <!-- question timer -->
+        <div id="timer" class="text-center"></div>
+
+        <!-- start button -->
+        <button class="start-button">Start</button>
+
       </div> <!-- END game-board -->
 
-      <!-- Button -->
-      <button class="start-button">Click Me</button>
-
     </div> <!-- END wrapper -->
+
   </div> <!-- END container-full-bg -->
 
-  <!-- trivia card template -->
+  <!-- trivia card questions template -->
   <script id="question-template" type="text/custom-template">
     <div>
-      <h1 class="first"></h1>
-      <h2 class="bar"></h2>
+      <h1 id="question"></h1>
+      <h2 id="0" class="choices"></h2>
+      <h2 id="1" class="choices"></h2>
+      <h2 id="2" class="choices"></h2>
+      <h2 id="3" class="choices"></h2>
+    </div>
+  </script>
+
+  <!-- trivia card answers template -->
+  <script id="answers-template" type="text/custom-template">
+    <div>
+      <h1 id="results"></h1>
+      <img src="">
+      <h2 id="correct-answer" class="answer"></h2>
     </div>
   </script>
 
   <!-- jQuery Library -->
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js" 
-  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-  
-  <!-- game logic -->
-  <script src="assets/js/game.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <!-- Trivia Game Object -->
+  <script src="assets/js/TriviaGame.js"></script>
+  <!-- Logic -->
+  <script src="assets/js/logic.js"></script>
 
 </body>
 </html>

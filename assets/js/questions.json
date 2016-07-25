@@ -10,7 +10,7 @@
         "AT-ATs",
         "TIE Bombers"
       ],
-      "answer": 3
+      "answer": 2
     },
     {
       "question": "Who infiltrated Jabba's palace dressed as a bounty hunter named Boushh?",
@@ -21,7 +21,7 @@
         "Chewbacca",
         "Princess Leia"
       ],
-      "answer": 4
+      "answer": 3
     },
     {
       "question": "Who first discovered stormtroopers on Cloud City but couldn't tell his friends?",
@@ -32,7 +32,7 @@
         "Han Solo",
         "C-3PO"
       ],
-      "answer": 4
+      "answer": 3
     },
     {
       "question": "How many forms of communication does C-3PO speak?",
@@ -43,7 +43,7 @@
         "Over 3 million",
         "Over 3,000"
       ],
-      "answer": 1
+      "answer": 0
     },
     {
       "question": "What part of the pit droid did Jar Jar have to hit to get it to stop acting up?",
@@ -54,7 +54,7 @@
         "Nose",
         "Back"
       ],
-      "answer": 3
+      "answer": 2
     },
     {
       "question": "What kind of droid is R2-D2?",
@@ -65,7 +65,7 @@
         "Unknown",
         "Protocol"
       ],
-      "answer": 2
+      "answer": 1
     },
     {
       "question": "How many lightsabers does General Grievous use?",
@@ -76,7 +76,7 @@
         "Four",
         "Two"
       ],
-      "answer": 3
+      "answer": 2
     },
     {
       "question": "What command was given to turn the clones to the dark side?",
@@ -87,7 +87,7 @@
         "Order 6",
         "Order 66"
       ],
-      "answer": 4
+      "answer": 3
     },
     {
       "question": "Where was Anakin Skywalker born?",
@@ -98,7 +98,7 @@
         "Endor",
         "Naboo"
       ],
-      "answer": 1
+      "answer": 0
     },
     {
       "question": "How many Jedi are on the Jedi Council?",
@@ -109,7 +109,7 @@
         "Sixteen",
         "Eight"
       ],
-      "answer": 2
+      "answer": 1
     }
   ]
 }
