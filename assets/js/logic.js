@@ -40,7 +40,7 @@ $( document ).ready( function()
     game.retrieveQuestions();
 
     /* Bind event listener to start button */
-    $( 'button.start-button' ).one( 'click', startRound );
+    $( 'p.glow-neon' ).one( 'click', startRound );
 
    }
    /* END startGame() ---------------------------- */
@@ -60,7 +60,8 @@ $( document ).ready( function()
    {
 
     /* Hide start button */
-    $( 'button.start-button' ).addClass( 'hide' );
+    $( 'p.glow-neon' ).addClass( 'hide' );
+    $( 'img.hero-img' ).remove();
 
     /* Initiate new round */
     game.newRound();
@@ -225,7 +226,7 @@ $( document ).ready( function()
 
     $( '#trivia-cards' ).append( resultsTemplate );
 
-    $( 'button.start-button' ).text( 'Restart Trivia' )
+    $( 'p.glow-neon' ).text( 'Restart Trivia' )
                               .removeClass( 'hide' )
                               .one( 'click', startRound );
 
