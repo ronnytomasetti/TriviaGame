@@ -19,7 +19,7 @@ $( document ).ready( function()
   /**
    *  Starts a new game
    *
-   *  Initializes global game objects.
+   *  Initializes global variables and templates.
    *  Calls function to retrieve json containing questions.
    *  Binds one click event listener to start button.
    *
@@ -32,12 +32,12 @@ $( document ).ready( function()
     /* Initialize global game variables */
     game = new TriviaGame();
 
+    /* Start retrieving questions json */
+    game.retrieveQuestions();
+
     qTemplate = $( '#question-template' ).html();
     aTemplate = $( '#answers-template' ).html();
     rTemplate = $( '#results-template' ).html();
-
-    /* Start retrieving questions json */
-    game.retrieveQuestions();
 
     /* Bind event listener to start button */
     $( 'p.glow-neon' ).one( 'click', startRound );
@@ -48,7 +48,7 @@ $( document ).ready( function()
   /**
    *  Starts a new round
    *
-   *  Hides start button.
+   *  Hides start button and removes img.
    *  Call for new round.
    *  Ends with call to displayNextQuestion() function.
    *
@@ -95,22 +95,20 @@ $( document ).ready( function()
 
     /* Set up html for current question */
     $( questionTemplate ).find( '#question' )
-                         .html( question );
+                         .text( question );
 
     /* Loop through choices array in order to set up html and click listeners */
     $.each( choices, function( index, value )
     {
 
       $( questionTemplate ).find( '#' + index )
-                           .html( value )
+                           .text( value )
                            .click( checkAnswer );
 
-    });
-    /* END .each() loop */
-
-    $( '#trivia-cards' ).children().remove();
+    }); /* END .each() loop */
 
     /* Add question to div with id trivia-cards */
+    $( '#trivia-cards' ).children().remove();
     $( '#trivia-cards' ).append( questionTemplate );
 
     /* Time starts now!! */
@@ -143,8 +141,6 @@ $( document ).ready( function()
     var userChoice = $( this ).attr( 'id' );
     var correctAnswer = game.questionsBank[ game.currentQuestion ].answer;
 
-    console.log("THIS IN CHECKANSWER(): " + $( this ).attr( 'id' ) );
-
     if ( userChoice == correctAnswer ) /* Player answered correctly */
     {
       game.correctAnswers++;
@@ -176,6 +172,7 @@ $( document ).ready( function()
    */
    function displayAnswer( isCorrect )
    {
+
     /* Store copy of answer template */
     var answerTemplate = $( aTemplate ).clone();
 
@@ -194,9 +191,10 @@ $( document ).ready( function()
     game.currentQuestion++;
 
     if ( game.currentQuestion == game.questionsBank.length )
-      setTimeout( endRound, 3000 );
+      setTimeout( endRound, 3000 ); // NO MORE QUESTIONS! END ROUND!!
     else
-      setTimeout( displayQuestion, 3000 );
+      setTimeout( displayQuestion, 3000 ); // YEAH!!! MORE QUESTIONS, DISPLAY NEXT!
+
    }
    /* END displayAnswer() ---------------------------- */
 
@@ -216,14 +214,13 @@ $( document ).ready( function()
     var resultsTemplate = $( rTemplate ).clone();
 
     $( resultsTemplate ).find( '#correct' )
-                        .text( game.correctAnswers );
+                        .text( 'Correct: ' + game.correctAnswers );
     $( resultsTemplate ).find( '#incorrect' )
-                        .text( game.incorrectAnswers );
+                        .text( 'Incorrect: ' + game.incorrectAnswers );
     $( resultsTemplate ).find( '#unanswered' )
-                        .text( game.unanswered );
+                        .text( 'Unanswered: ' + game.unanswered );
 
     $( '#trivia-cards' ).children().remove();
-
     $( '#trivia-cards' ).append( resultsTemplate );
 
     $( 'p.glow-neon' ).text( 'Restart Trivia' )
@@ -234,7 +231,7 @@ $( document ).ready( function()
    /* END endRound() ---------------------------- */
 
   /**
-   *  Sets new timer object
+   *  Creates new timer object
    *
    *  @param ()
    *  @return undefined
@@ -242,16 +239,18 @@ $( document ).ready( function()
    */
    function startTimer()
    {
+
     $( '.circle-timer' ).TimeCircles({ time: { Days: { show: false },
                                                Hours: { show: false },
                                                Minutes: { show: false },
                                                Seconds: { color: "#ff8080" }
-                                             }
+                                             },
+                                             total_duration: game.timeAllowed
                                            });
 
-    // $( '.circle-timer' ).TimeCircles( { count_past_zero: false } );
     $( '.circle-timer' ).TimeCircles( { direction: "Both" } );
     // $( '.circle-timer' ).TimeCircles( { use_background: false } );
+    // $( '.circle-timer' ).TimeCircles( { count_past_zero: false } );
 
     $( '.circle-timer' ).attr( 'data-timer', game.timeAllowed.toString() );
     $( '.circle-timer' ).TimeCircles().start();
