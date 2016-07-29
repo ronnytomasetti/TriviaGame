@@ -110,6 +110,116 @@
         "Eight"
       ],
       "answer": 1
+    },
+    {
+      "question": "Who is the Senator from Alderaan?",
+      "choices":
+      [
+        "Bail Organa",
+        "Ask Ask",
+        "Padme Amidala",
+        "MI Lo"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "Which ship does Wedge pilot in Return of the Jedi?",
+      "choices":
+      [
+        "A-Wing",
+        "X-Wing",
+        "B-Wing",
+        "Millennium Falcon"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "What is the name of the creature that swallows and spits out R2-D2 in the Dagobah system?",
+      "choices":
+      [
+        "Jaws",
+        "Wampah",
+        "Bigfoot",
+        "Dragonsnake"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "What does AT-AT stand for?",
+      "choices":
+      [
+        "All Terrain Armoured Transport",
+        "Attack Terrain Armoured Transport",
+        "Auto Transport Attack Tank",
+        "Another Tight Armoured Transporter"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "Who is the only non-Jedi/Sith in the trilogy to use a lightsaber?",
+      "choices":
+      [
+        "Leia",
+        "Han Solo",
+        "Chewbacca",
+        "R2-D2"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "C-3PO gives Han some odds regarding the successful navigation of an asteroid field. what were the odds?",
+      "choices":
+      [
+        "3,722,000 to 1",
+        "45,572 to 1",
+        "3,720 to 1",
+        "2,500 to 1"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "Who is in charge of the Empire's ground attack on Hoth?",
+      "choices":
+      [
+        "General Veers",
+        "Grand Moff Tarkin",
+        "Darth Vader",
+        "Captain Needs"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "Which of the Wampa's arms did Luke slice off in Empire Strikes Back?",
+      "choices":
+      [
+        "Left arm",
+        "Right arm",
+        "Both arms",
+        "None"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Which villain was NOT a member of the Separatist Council?",
+      "choices":
+      [
+        "General Grievous",
+        "Count Dooku",
+        "Darth Maul",
+        "Viceroy Nute Gunray"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "Who took more than half of Anakin Skywalker's arm during battle?",
+      "choices":
+      [
+        "Darth Vader",
+        "Count Dooku",
+        "General Grievous",
+        "Darth Maul"
+      ],
+      "answer": 1
     }
   ]
 }
